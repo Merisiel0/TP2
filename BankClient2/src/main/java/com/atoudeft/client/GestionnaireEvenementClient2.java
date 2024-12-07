@@ -26,14 +26,14 @@ public class GestionnaireEvenementClient2 implements GestionnaireEvenement {
     @Override
     public void traiter(Evenement evenement) {
         Object source = evenement.getSource();
-        //Connexion cnx;
+        Connexion cnx;
         String typeEvenement, arg, str;
         int i;
         String[] t;
         MainFrame fenetre;
 
         if (source instanceof Connexion) {
-            //cnx = (Connexion) source;
+            cnx = (Connexion) source;
             typeEvenement = evenement.getType();
             switch (typeEvenement) {
                 /******************* COMMANDES GÉNÉRALES *******************/
@@ -82,7 +82,14 @@ public class GestionnaireEvenementClient2 implements GestionnaireEvenement {
                 /******************* SÉLECTION DE COMPTES *******************/
                 case "EPARGNE" :
                     arg = evenement.getArgument();
-                    JOptionPane.showMessageDialog(panneauPrincipal,"EPARGNE "+arg);
+                    t = arg.split(" ");
+                    if(t.length >= 2 || t[0].equals("OK")) {
+                        panneauPrincipal.ajouterCompte(t[1]);
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(panneauPrincipal,"Création d'un compte épargne échouée.",
+                                "ERREUR", JOptionPane.ERROR_MESSAGE);
+                    }
                     break;
                 case "SELECT" :
                     arg = evenement.getArgument();
