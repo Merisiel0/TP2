@@ -7,20 +7,16 @@ import com.atoudeft.controleur.EcouteurOperationsCompte;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Vector;
 
 /**
- *
  * @author Abdelmoumène Toudeft (Abdelmoumene.Toudeft@etsmtl.ca)
  * @version 1.0
  * @since 2024-11-01
  */
-public class PanneauPrincipal  extends JPanel {
+public class PanneauPrincipal extends JPanel {
     private Client client;
     private PanneauConnexion panneauConnexion;
+    private PanneauAction panneauAction;
     private JPanel panneauCompteClient;
     private PanneauOperationsCompte panneauOperationsCompte;
 
@@ -33,10 +29,12 @@ public class PanneauPrincipal  extends JPanel {
         this.client = client;
 
         panneauConnexion = new PanneauConnexion();
-        panneauConnexion.setEcouteur(new EcouteurConnexion(client,panneauConnexion));
+        panneauConnexion.setEcouteur(new EcouteurConnexion(client, panneauConnexion));
 
+        panneauAction = new PanneauAction();
+        EcouteurOperationsCompte ecouteurOperationsCompte = new EcouteurOperationsCompte(client, panneauAction);
+        panneauAction.setEcouteur(ecouteurOperationsCompte);
         panneauOperationsCompte = new PanneauOperationsCompte();
-        EcouteurOperationsCompte ecouteurOperationsCompte = new EcouteurOperationsCompte(client);
         panneauOperationsCompte.setEcouteur(ecouteurOperationsCompte);
 
         panneauCompteClient = new JPanel();
@@ -50,7 +48,7 @@ public class PanneauPrincipal  extends JPanel {
         jlNumerosComptes = new JList<>(numerosComptes);
         jlNumerosComptes.setSelectionMode(DefaultListSelectionModel.SINGLE_SELECTION);
         jlNumerosComptes.setBorder(BorderFactory.createTitledBorder("Comptes bancaires"));
-        jlNumerosComptes.setPreferredSize(new Dimension(250,500));
+        jlNumerosComptes.setPreferredSize(new Dimension(250, 500));
 
 
         panneauCompteClient.add(panneauOperationsCompte, BorderLayout.NORTH);
@@ -72,20 +70,25 @@ public class PanneauPrincipal  extends JPanel {
         this.numerosComptes.clear();
         this.bureau.removeAll();
     }
+
     public void cacherPanneauConnexion() {
         panneauConnexion.effacer();
         panneauConnexion.setVisible(false);
     }
+
     public void montrerPanneauConnexion() {
         panneauConnexion.setVisible(true);
     }
+
     public void cacherPanneauCompteClient() {
         panneauCompteClient.setVisible(false);
         this.numerosComptes.clear();
     }
+
     public void montrerPanneauCompteClient() {
         panneauCompteClient.setVisible(true);
     }
+
     /**
      * Affiche un numéro de compte dans le JList des comptes.
      *
