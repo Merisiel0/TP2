@@ -65,9 +65,14 @@ public class PanneauPrincipal  extends JPanel {
         panneauCompteClient.setVisible(false);
     }
 
+    public void setMontant(String mtn){
+        panneauOperationsCompte.setSolde(mtn);
+    }
+
     /**
      * Vide les éléments d'interface du panneauPrincipal.
      */
+
     public void vider() {
         this.numerosComptes.clear();
         this.bureau.removeAll();

@@ -3,6 +3,7 @@ package com.atoudeft.client;
 import com.atoudeft.commun.evenement.Evenement;
 import com.atoudeft.commun.evenement.GestionnaireEvenement;
 import com.atoudeft.commun.net.Connexion;
+import com.atoudeft.vue.PanneauOperationsCompte;
 import com.atoudeft.vue.PanneauPrincipal;
 import com.programmes.MainFrame;
 
@@ -31,6 +32,9 @@ public class GestionnaireEvenementClient2 implements GestionnaireEvenement {
         int i;
         String[] t;
         MainFrame fenetre;
+
+
+
 
         if (source instanceof Connexion) {
             cnx = (Connexion) source;
@@ -80,6 +84,7 @@ public class GestionnaireEvenementClient2 implements GestionnaireEvenement {
                     }
                     break;
                 /******************* SÉLECTION DE COMPTES *******************/
+                // evenement = Commande OK/NO/argument
                 case "EPARGNE" :
                     arg = evenement.getArgument();
                     t = arg.split(" ");
@@ -93,7 +98,26 @@ public class GestionnaireEvenementClient2 implements GestionnaireEvenement {
                     break;
                 case "SELECT" :
                     arg = evenement.getArgument();
-                    JOptionPane.showMessageDialog(panneauPrincipal,"SELECT "+arg);
+                    t = arg.split(" ");
+                    System.out.println(arg);
+                    //System.out.println(t.length);
+                    if(t.length >= 2 || t[0].equals("OK")) {
+                        String mtnSolde = t[2];
+
+                        panneauPrincipal.setMontant(mtnSolde);
+
+
+                        JOptionPane.showMessageDialog(panneauPrincipal,"SELECT "+arg);
+
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(panneauPrincipal,"Clic nom valide",
+                                "ERREUR", JOptionPane.ERROR_MESSAGE);
+
+                    }
+
+                    //JOptionPane.showConfirmDialog(panneauPrincipal, arg);
+                    //JOptionPane.showMessageDialog(panneauPrincipal,"SELECT "+arg);
                     break;
 
                 /******************* OPÉRATIONS BANCAIRES *******************/

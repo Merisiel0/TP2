@@ -23,6 +23,7 @@ public class ProgrammeClientTP1 {
 
 		Scanner clavier = new Scanner(System.in);
 		Client client = new Client();
+
 		String saisie;
 
 		if (!client.connecter()) {

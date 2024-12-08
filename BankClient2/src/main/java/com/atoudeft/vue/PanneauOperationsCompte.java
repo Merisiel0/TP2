@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 
 public class PanneauOperationsCompte extends JPanel {
     private JButton bEpargne, bDepot, bRetrait, bTransfert, bFacture, bHistorique;
-    private JLabel lblSolde;
+    private JLabel lblSolde,mtnSolde;
 
     public PanneauOperationsCompte() {
         bEpargne = new JButton("Créer compte épargne");
@@ -16,6 +16,7 @@ public class PanneauOperationsCompte extends JPanel {
         bFacture = new JButton("Payer Facture");
         bHistorique = new JButton("Historique du compte");
         lblSolde = new JLabel("Solde : ");
+        mtnSolde = new JLabel("");
 
         bEpargne.setActionCommand("EPARGNE");
         bDepot.setActionCommand("DEPOT");
@@ -27,13 +28,20 @@ public class PanneauOperationsCompte extends JPanel {
         //à compléter :
         this.setLayout(new FlowLayout(FlowLayout.RIGHT));
         this.add(lblSolde);
+        this.add(mtnSolde);
         this.add(bEpargne);
         this.add(bDepot);
         this.add(bRetrait);
         this.add(bTransfert);
         this.add(bFacture);
         this.add(bHistorique);
+
     }
+    public void setSolde(String montant){
+        this.mtnSolde.setText(montant);
+    }
+
+
     public void setEcouteur(ActionListener ecouteur) {
         bEpargne.addActionListener(ecouteur);
         bDepot.addActionListener(ecouteur);
@@ -42,4 +50,6 @@ public class PanneauOperationsCompte extends JPanel {
         bFacture.addActionListener(ecouteur);
         bHistorique.addActionListener(ecouteur);
     }
+
+
 }
