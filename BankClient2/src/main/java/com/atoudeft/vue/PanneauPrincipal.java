@@ -87,9 +87,23 @@ public class PanneauPrincipal extends JPanel {
 
     public void MontrerHist(String[] t){
         String text = "Historique du compte\n";
+        //text = text + t[0]+ " ";
 
-        for (int i=0 ; i<t.length;i++){
-            text = text + t[i] + "\n";
+        for (int i=0; i<t.length ;i++){
+            System.out.println(t[i]);
+            text = text + t[i]+ " ";
+            System.out.println( i + " index");
+            if ((i+1 % 6)==0){
+                if (i==0){
+                    continue;
+                }
+
+                else if(i!=0){
+                    System.out.println(".");
+                    text = text + "\n" ;
+                }
+
+            }
     }
         //mettre un JTextArea dans la panneuConnexion il est vide au depart
         this.fenetre = new JFrame();

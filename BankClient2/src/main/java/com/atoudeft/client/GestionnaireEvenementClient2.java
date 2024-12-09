@@ -49,6 +49,8 @@ public class GestionnaireEvenementClient2 implements GestionnaireEvenement {
             switch (typeEvenement) {
                 /******************* COMMANDES GÉNÉRALES *******************/
                 case "END": //Le serveur demande de fermer la connexion
+                    fenetre = (MainFrame)panneauPrincipal.getTopLevelAncestor();
+                    fenetre.toggleBoutonsConnection();
                     client.deconnecter(); //On ferme la connexion
                     break;
                 /******************* CREATION et CONNEXION *******************/
@@ -147,12 +149,12 @@ public class GestionnaireEvenementClient2 implements GestionnaireEvenement {
                     arg = evenement.getArgument();
                     //System.out.println(arg);
                     //String phrase = "SUN Dec 08 18:21:28 EST 2024   DEPOT 4.0" +
-                            //"SUN Dec 08 18:21:43 EST 2024   DEPOT   3.0" +
-                            //"SUN Dec 03 18:22:14 EST 2024   DEPOT 430.0";
+                                    //"SUN Dec 08 18:21:43 EST 2024   DEPOT   3.0" +
+                                    //"SUN Dec 03 18:22:14 EST 2024   DEPOT 430.0";
                     t = arg.split(" ");
-                    //System.out.println("__");
-                    String mot = t.toString();
-                    System.out.println(mot);
+                    //System.out.println(t[12]);
+
+
 
                     panneauPrincipal.MontrerHist(t);
 

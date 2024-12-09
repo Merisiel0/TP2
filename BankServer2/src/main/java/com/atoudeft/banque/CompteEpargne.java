@@ -20,7 +20,9 @@ public class CompteEpargne extends CompteBancaire {
     @Override
     public boolean crediter(double montant) {
         if (montant>0) {
+
             solde += montant;
+            historique.empiler(new OperationDepot(montant));
             return true;
         }
         return false;
