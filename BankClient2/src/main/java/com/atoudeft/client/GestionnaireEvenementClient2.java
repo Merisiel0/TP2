@@ -13,6 +13,7 @@ public class GestionnaireEvenementClient2 implements GestionnaireEvenement {
     private Client client;
     private PanneauPrincipal panneauPrincipal;
 
+
     /**
      * Construit un gestionnaire d'événements pour un client.
      *
@@ -23,7 +24,13 @@ public class GestionnaireEvenementClient2 implements GestionnaireEvenement {
         this.client = client;
         this.panneauPrincipal = panneauPrincipal;
         this.client.setGestionnaireEvenement(this);
+
     }
+
+    //mettre a jour le texte dans le JLabel text servant a afficher l'historique
+
+
+
     @Override
     public void traiter(Evenement evenement) {
         Object source = evenement.getSource();
@@ -111,13 +118,9 @@ public class GestionnaireEvenementClient2 implements GestionnaireEvenement {
 
                     }
                     else{
-                        JOptionPane.showMessageDialog(panneauPrincipal,"Clic nom valide",
+                        JOptionPane.showMessageDialog(panneauPrincipal,"Clic non valide",
                                 "ERREUR", JOptionPane.ERROR_MESSAGE);
-
                     }
-
-                    //JOptionPane.showConfirmDialog(panneauPrincipal, arg);
-                    //JOptionPane.showMessageDialog(panneauPrincipal,"SELECT "+arg);
                     break;
 
                 /******************* OPÉRATIONS BANCAIRES *******************/
@@ -137,8 +140,28 @@ public class GestionnaireEvenementClient2 implements GestionnaireEvenement {
                     arg = evenement.getArgument();
                     JOptionPane.showMessageDialog(panneauPrincipal,"TRANSFER " + arg);
                     break;
+
+                case "HIST" :
+                    //System.out.println("MN");
+                    //arg est l'argument qui me montre tout les dernières opérations fait par le client
+                    arg = evenement.getArgument();
+                    //System.out.println(arg);
+                    //String phrase = "SUN Dec 08 18:21:28 EST 2024   DEPOT 4.0" +
+                            //"SUN Dec 08 18:21:43 EST 2024   DEPOT   3.0" +
+                            //"SUN Dec 03 18:22:14 EST 2024   DEPOT 430.0";
+                    t = arg.split(" ");
+                    //System.out.println("__");
+                    String mot = t.toString();
+                    System.out.println(mot);
+
+                    panneauPrincipal.MontrerHist(t);
+
+
+
+
                 /******************* TRAITEMENT PAR DÉFAUT *******************/
                 default:
+
                     System.out.println("RECU : "+evenement.getType()+" "+evenement.getArgument());
             }
         }

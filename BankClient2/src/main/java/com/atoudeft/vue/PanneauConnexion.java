@@ -58,4 +58,5 @@ public class PanneauConnexion extends JPanel {
         this.txtNumCompteClient.setText("");
         this.txtNip.setText("");
     }
+
 }

@@ -294,6 +294,7 @@ public class GestionnaireEvenementServeur implements GestionnaireEvenement {
                 case "HIST":
                     compteBancaire = serveurBanque.getBanque().getCompteBancaireParNumero(cnx.getNumeroCompteActuel());
                     str = compteBancaire.getHistorique();
+
                     cnx.envoyer("HIST "+str);
                     break;
                 /******************* TRAITEMENT PAR DÉFAUT *******************/
